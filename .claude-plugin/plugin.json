@@ -1,0 +1,9 @@
+{
+  "name": "posteahora",
+  "version": "0.1.0",
+  "description": "Plan content, collect post ideas, and publish across Instagram, X, LinkedIn, Threads, Facebook and more — powered by PosteAhora.",
+  "author": { "name": "PosteAhora", "url": "https://posteahora.com" },
+  "homepage": "https://posteahora.com",
+  "license": "MIT",
+  "installationPreference": "available"
+}

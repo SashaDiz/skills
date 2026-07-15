@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "posteahora": {
+      "type": "http",
+      "url": "https://mcp.posteahora.com/mcp/REPLACE_WITH_YOUR_CONNECTOR_TOKEN"
+    }
+  }
+}

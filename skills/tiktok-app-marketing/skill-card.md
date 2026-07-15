@@ -4,7 +4,7 @@ This skill helps agents run a TikTok slideshow marketing workflow by researching
 This skill is ready for commercial/non-commercial use. <br>
 
 ## Publisher: <br>
-[SashaDiz](https://clawhub.ai/user/SashaDiz) <br>
+[SashaDiz](https://clawhub.ai/sashadiz) <br>
 
 ### License/Terms of Use: <br>
 
@@ -29,8 +29,8 @@ Mitigation: Require user approval for browser research, avoid spam-like activity
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SashaDiz/tiktok-app-marketing) <br>
-- [Publisher profile](https://clawhub.ai/user/SashaDiz) <br>
+- [ClawHub skill page](https://clawhub.ai/sashadiz/skills/tiktok-app-marketing) <br>
+- [Publisher profile](https://clawhub.ai/sashadiz) <br>
 - [Analytics & Feedback Loop](references/analytics-loop.md) <br>
 - [App Category Templates](references/app-categories.md) <br>
 - [Competitor Research Guide](references/competitor-research.md) <br>

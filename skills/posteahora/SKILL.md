@@ -1,18 +1,26 @@
 ---
 name: posteahora
-description: "Social media scheduling CLI — publish and schedule posts across Instagram, X, LinkedIn, Threads, Facebook, TikTok and more, powered by PosteAhora."
+description: "Social media scheduling & publishing CLI — plan, schedule and publish posts across Instagram, TikTok, YouTube, X (Twitter), Facebook, LinkedIn, Threads, Bluesky and Discord, powered by PosteAhora."
 allowed-tools:
   - Bash(posteahora:*)
 ---
 
 # PosteAhora
 
-Schedule and publish social posts across every major network from the command
-line, powered by [PosteAhora](https://posteahora.com). This skill lets an agent
-create, schedule and publish content, manage ideas, read analytics and upload
-media on the user's behalf.
+Schedule and publish social media posts across every major network from the
+command line, powered by [PosteAhora](https://posteahora.com). Use this skill to
+create, schedule, publish and manage social content, organize a content-idea
+backlog, upload media, and read analytics on the user's behalf.
 
 ## Install PosteAhora CLI if it doesn't exist
+
+Check whether the CLI is available:
+
+```bash
+posteahora --version
+```
+
+If it isn't installed:
 
 ```bash
 npm install -g @posteahora/cli
@@ -20,20 +28,20 @@ npm install -g @posteahora/cli
 pnpm install -g @posteahora/cli
 ```
 
-The installed command is `posteahora`. You can also run it without installing via
-`npx @posteahora/cli <command>`.
+The installed command is `posteahora`. It can also run via `npx @posteahora/cli`.
 
 **Official resources**
-- npm: https://www.npmjs.com/package/@posteahora/cli
-- CLI on GitHub: https://github.com/posteahora/cli
-- MCP server (for agents that prefer MCP over a CLI): https://github.com/posteahora/mcp
-- API reference: https://posteahora.com/docs
 - Website: https://posteahora.com
+- Docs: https://posteahora.com/docs
+- API reference: https://posteahora.com/docs/api
+- CLI on npm: https://www.npmjs.com/package/@posteahora/cli
+- CLI on GitHub: https://github.com/posteahora/cli
+- MCP server: https://github.com/posteahora/mcp
 
 | Property | Value |
 |----------|-------|
 | **name** | posteahora |
-| **description** | Social media scheduling CLI for publishing across Instagram, X, LinkedIn, Threads, Facebook, TikTok and more |
+| **description** | Social media scheduling CLI for publishing across Instagram, TikTok, YouTube, X, Facebook, LinkedIn, Threads, Bluesky and Discord |
 | **command** | `posteahora` |
 | **allowed-tools** | Bash(posteahora:*) |
 
@@ -42,7 +50,7 @@ The installed command is `posteahora`. You can also run it without installing vi
 You MUST authenticate before running any other command. Every command fails
 without a valid key.
 
-First, check the current auth status:
+Check status first:
 
 ```bash
 posteahora auth
@@ -56,65 +64,113 @@ posteahora auth --key pah_live_xxxxxxxx
 ```
 
 The key is validated and stored in `~/.posteahora/config.json`. It can also be
-supplied per-run via the `POSTEAHORA_API_KEY` environment variable.
+supplied via the `POSTEAHORA_API_KEY` environment variable (useful in CI). Never
+print, log, or echo the key.
 
 ## Core workflow
 
-1. **Authenticate** — `posteahora auth`
-2. **List accounts** — `posteahora accounts` (you need each account's ID to post)
-3. **Upload media** (optional) — `posteahora upload <file>` → returns a public URL
-4. **Create / schedule / publish** — `posteahora post …`
-5. **Check status** — `posteahora posts`
-6. **Analyze** — `posteahora analytics`
+Follow this order for any publishing task:
 
-## Essential commands
+1. **Authenticate** — `posteahora auth`
+2. **Discover accounts** — `posteahora accounts` to get the account ID for each
+   platform. You cannot post without an explicit account ID.
+3. **Upload media** (optional) — `posteahora upload <file>` → returns a public URL
+   to pass to `--media`.
+4. **Create / schedule / publish** — `posteahora post …`
+5. **Verify** — `posteahora posts` (or `--json`) to confirm status.
+6. **Analyze** (optional) — `posteahora analytics`.
+
+## Command reference
+
+### Authentication
 
 ```bash
-# Auth
 posteahora auth --key pah_live_xxxx   # save & validate a key
-posteahora auth                       # show status
+posteahora auth                       # show current status
 posteahora logout                     # remove the saved key
-
-# Accounts (get the account IDs used for posting)
-posteahora accounts
-
-# Publish now to one or more channels (platform:accountId from `accounts`)
-posteahora post "Launch day 🚀" --to twitter:a1b2 --to linkedin:c3d4
-
-# Schedule for a future time (ISO 8601), with media
-posteahora upload ./reel.mp4          # prints a public URL
-posteahora post "New reel" --to instagram:e5f6 \
-  --media https://cdn.posteahora.com/… --at 2026-07-20T09:00:00Z
-
-# Draft only
-posteahora post "Rough idea" --to twitter:a1b2 --draft
-
-# Posts, ideas, analytics
-posteahora posts --status scheduled
-posteahora ideas add "5 hooks for launch week" --tags launch,eng
-posteahora ideas list
-posteahora analytics --period 30d
 ```
 
-Add `--json` to most commands for machine-readable output.
+### Accounts
 
-### `post` options
-- `--to platform:accountId` — target channel (repeatable or comma-separated)
-- `--media <url>` — attach media (repeatable; use `upload` to get a URL)
-- `--at <ISO 8601>` — schedule for a future time (otherwise publishes now)
+```bash
+posteahora accounts          # human-readable table
+posteahora accounts --json   # machine-readable
+```
+
+Each row includes `platform`, `username`, the account `id`, and connection status.
+Use the `id` in `--to platform:accountId`.
+
+### Create a post
+
+```bash
+# Publish now to one or more channels
+posteahora post "Launch day 🚀" --to twitter:a1b2 --to linkedin:c3d4
+
+# Schedule for a future time (ISO 8601)
+posteahora post "Morning tip" --to instagram:e5f6 --at 2026-07-20T09:00:00Z
+
+# Draft only (nothing goes live)
+posteahora post "Draft idea" --to twitter:a1b2 --draft
+
+# With uploaded media
+posteahora upload ./reel.mp4
+posteahora post "New reel" --to instagram:e5f6 --media https://cdn.posteahora.com/… --at 2026-07-20T09:00:00Z
+```
+
+**`post` options**
+- `--to platform:accountId` — target channel (repeatable or comma-separated) **(required)**
+- `--media <url>` — attach media (repeatable; from `upload`)
+- `--at <ISO 8601>` — schedule for a future time (else publish now)
 - `--draft` — create a draft instead of publishing
 - `--title`, `--hashtags a,b`, `--media-type image|video`, `--post-type post|reel|story`
+- `--json` — machine-readable output
 
-## Supported platforms
+### Manage & analyze
 
-Instagram · TikTok · YouTube · X (Twitter) · Facebook · LinkedIn · Threads ·
-Bluesky · Discord
+```bash
+posteahora posts --status scheduled          # list posts by status
+posteahora ideas add "5 hooks" --tags launch # add a backlog idea
+posteahora ideas list
+posteahora analytics --period 30d            # performance across platforms
+posteahora upload ./photo.jpg                # upload media → public URL
+```
+
+## Handling account IDs
+
+The user will describe channels by name ("post to my Instagram and X"). Map each
+name to a real account ID by running `posteahora accounts` and matching the
+`platform`/`username`. Never guess an ID, and never fall back to "the first
+account" — if a requested platform has no connected account, tell the user and
+skip it.
 
 ## Guardrails
 
-- **Publishing is outward-facing and hard to undo** — confirm the caption,
-  channels and time with the user before running `posteahora post` without
-  `--draft`. When unsure, create a `--draft`.
-- Always run `posteahora accounts` first; never guess an account ID.
+- **Publishing is outward-facing and hard to undo.** Before running
+  `posteahora post` WITHOUT `--draft`, confirm the caption, channels, and time
+  with the user. When unsure, create a `--draft` and ask.
+- Scheduled times must be in the future and ISO 8601.
 - Never invent media URLs, analytics numbers, or claims in captions.
-- If a command fails, report the exact error and stop — don't retry blindly.
+- Respect each platform's limits (e.g. X character count) — offer a per-platform
+  caption instead of silently truncating.
+- If a command fails, report the exact error message and stop; do not retry blindly.
+- Never print or store the API key.
+
+## Errors
+
+- **"No API key…"** — run `posteahora auth --key pah_live_…` (or set
+  `POSTEAHORA_API_KEY`).
+- **`--at must be in the future`** — the scheduled time is in the past; pick a
+  future ISO 8601 timestamp.
+- **`Invalid --to …`** — the value isn't `platform:accountId`; run
+  `posteahora accounts` and use a real ID.
+- **HTTP 401 / 403** — key invalid or lacking scope; re-auth with a full-access key.
+- **HTTP 429** — rate limited; wait and retry.
+
+## See also
+
+- [QUICK_START.md](QUICK_START.md) — the fastest path to a published post.
+- [FEATURES.md](FEATURES.md) — full capability list.
+- [PLATFORMS.md](PLATFORMS.md) — per-platform support.
+- [PUBLISHING.md](PUBLISHING.md) — how publishing & scheduling work.
+- [SUPPORTED_FILE_TYPES.md](SUPPORTED_FILE_TYPES.md) — accepted media formats.
+- [examples/](examples/) — ready-to-run command examples.

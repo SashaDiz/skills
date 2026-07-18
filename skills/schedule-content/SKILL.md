@@ -15,11 +15,15 @@ their connected social accounts. This skill **can publish**, so confirm before
 anything goes live (see Guardrails).
 
 ## Always do first
-1. Call **`list_accounts`**. You need each account's `id` to target a channel —
-   the API refuses to publish without an explicit `accountId`. Never guess or
-   reuse an id across platforms.
+1. Call **`list_accounts`**. This returns the accounts in the connector's/key's
+   workspace (a connector or key is bound to one workspace). You need each
+   account's `id` to target a channel — the API refuses to publish without an
+   explicit `accountId`. Never guess or reuse an id across platforms.
 2. If the user has no connected account for a requested platform, tell them and
    skip that channel — don't invent one.
+3. Publishing needs a **member+ role** in that workspace. If a create/schedule/
+   publish call returns `403`, the connector/key is view-only — tell the user
+   they need write access (or a key from a workspace where they can post).
 
 ## Inputs to gather (ask only what's missing)
 - **What to post** — caption/body. Offer to draft it if the user is vague.

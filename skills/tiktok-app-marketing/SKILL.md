@@ -220,8 +220,8 @@ Walk them through connecting step by step:
 
 1. **Create a PosteAhora account** at [posteahora.com](https://posteahora.com).
 2. **Connect TikTok** — this is the main one. Go to **Connections → add TikTok → Authorize**.
-3. **Create an API key** — go to **Settings → API & integrations** and create a key. It looks like `pah_live_…`. This is how I talk to PosteAhora programmatically. Keep it secret — don't commit it to public repos.
-4. **Get your account IDs** — run `posteahora accounts` (or `GET /accounts`). Each connected platform returns an `id`; that's the `accountId` I use to post and to pull analytics. I need at least the TikTok one.
+3. **Create an API key** — go to **Settings → API & integrations** and create a key. It looks like `pah_live_…`. This is how I talk to PosteAhora programmatically. Keep it secret — don't commit it to public repos. The key is **bound to the workspace** that's active when you create it, so create it in the workspace that holds the TikTok account (and any cross-post accounts) I'll use.
+4. **Get your account IDs** — run `posteahora accounts` (or `GET /accounts`). This lists the accounts in the key's workspace; each returns an `id` — that's the `accountId` I use to post and to pull analytics. I need at least the TikTok one. (If an account is missing, the key is probably in a different workspace.)
 5. **(Optional but recommended)** Connect Instagram, YouTube Shorts, Threads, Facebook, LinkedIn, Bluesky, or Discord for cross-posting — same content, different algorithms, more reach for free.
 
 The CLI and API are two ways to do the same thing:

@@ -29,6 +29,14 @@ The skills call PosteAhora's hosted **MCP connector**:
 Prefer a local (stdio) setup with an API key instead of the hosted connector? Use
 the [`@posteahora/mcp`](https://github.com/posteahora/mcp) package.
 
+## Workspaces
+
+A Connector URL (and an API key) is **bound to one workspace** — the one active
+when it was generated. So `list_accounts`, `list_posts` and `get_analytics`
+cover **that workspace** only, not everything you own. To work in another
+workspace, generate a connector/key there. Writes are role-gated: a **viewer**
+connector can read but not create, schedule or publish (those return `403`).
+
 ## Skills
 
 | Skill | What it does |

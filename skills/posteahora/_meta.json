@@ -1,7 +1,8 @@
 {
   "owner": "SashaDiz",
   "slug": "posteahora",
-  "displayName": "PosteAhora is a tool to schedule and publish social media posts across Instagram, TikTok, YouTube, X (Twitter), Facebook, LinkedIn, Threads, Bluesky and Discord — from your own code, your terminal, CI, or an AI agent, via a CLI, an MCP server, or a REST API.",
+  "displayName": "PosteAhora",
+  "description": "Schedule and publish social media posts across Instagram, TikTok, YouTube, X (Twitter), Facebook, LinkedIn, Threads, Bluesky and Discord — from your own code, your terminal, CI, or an AI agent, via a CLI, an MCP server, or a REST API.",
   "latest": {
     "version": "1.0.0"
   }

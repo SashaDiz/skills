@@ -7,7 +7,7 @@ account ID (`posteahora accounts`).
 | Platform | Publish | Schedule | Analytics | Notes |
 |----------|:------:|:--------:|:---------:|-------|
 | **Instagram** | ✅ | ✅ | ✅ | Feed posts, reels, stories; single image, carousel, or video |
-| **TikTok** | ✅ | ✅ | ✅ | Video and photo posts; draft mode supported |
+| **TikTok** | ✅ | ✅ | ✅ | Video and photo posts; **needs `platformOptions` → API/MCP only** (see below) |
 | **YouTube** | ✅ | ✅ | ✅ | Video uploads (Shorts and standard) |
 | **X (Twitter)** | ✅ | ✅ | ✅ | Text, images, video; shorter per-platform captions supported |
 | **Facebook** | ✅ | ✅ | ✅ | Page posts, images, video, reels |
@@ -36,11 +36,48 @@ posteahora accounts
 
 ## Per-platform options
 
-Use `--post-type` for the content format and `platformOptions` (via the API/MCP)
-for platform-specific behavior:
+The CLI exposes the format flags:
 
 - `--post-type post|reel|story`
 - `--media-type image|video`
+
+Anything platform-specific beyond that — `platformOptions` and the per-platform
+caption overrides in `platformCaptions` — is **REST API and MCP only**. The CLI
+does not send those fields.
+
+### TikTok needs `platformOptions`
+
+Omit them entirely and the post falls back to safe defaults —
+`privacyLevel: "SELF_ONLY"` — so it publishes **privately** and nobody sees it.
+Send the object but leave out `privacyLevel` and it fails with
+`Privacy level "undefined"`. Keys are camelCase; snake_case is silently ignored:
+
+```json
+{
+  "tiktok": {
+    "privacyLevel": "PUBLIC_TO_EVERYONE",
+    "photoTitle": "≤90 characters",
+    "disableComment": false,
+    "disableDuet": false,
+    "disableStitch": false,
+    "autoAddMusic": true
+  }
+}
+```
+
+The photo title key is **`photoTitle`** — a `title` inside `platformOptions.tiktok`
+is ignored, and the post's top-level `title` fills the *video* title instead.
+
+Use `autoAddMusic: false` when the video already has its own audio. Also pass
+`mediaType` explicitly — it decides the photo vs video endpoint — and note that
+TikTok photos must be **JPEG** (PNG fails with `file_format_check_failed`) and
+must be hosted by PosteAhora, since TikTok verifies URL ownership. Upload via
+`create_upload_url` (the presigned URL expires after 300 seconds) and use the
+returned `publicUrl`.
+
+TikTok also publishes asynchronously: right after the scheduled time the post
+stays `queued` for a few minutes. That is expected — check again rather than
+retrying.
 
 If a requested platform has no connected account, the CLI reports it — connect it
 in the app first. Platform availability depends on each network's API and your

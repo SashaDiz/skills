@@ -122,8 +122,50 @@ posteahora post "New reel" --to instagram:e5f6 --media https://cdn.posteahora.co
 - `--media <url>` — attach media (repeatable; from `upload`)
 - `--at <ISO 8601>` — schedule for a future time (else publish now)
 - `--draft` — create a draft instead of publishing
-- `--title`, `--hashtags a,b`, `--media-type image|video`, `--post-type post|reel|story`
+- `--title`, `--media-type image|video`, `--post-type post|reel|story`
 - `--json` — machine-readable output
+- `--hashtags a,b` — **stored on the post but never published.** Put hashtags in
+  the caption text instead (see Caption formatting).
+
+## Caption formatting
+
+The caption is published byte for byte — nothing re-wraps or trims it — so
+spacing is entirely your responsibility.
+
+**Multi-line captions need a heredoc.** The caption is a raw positional argument
+and the shell does not expand a backslash-n inside double quotes, so
+`posteahora post "line one\nline two"` publishes the characters `\n` verbatim:
+
+```bash
+CAPTION=$(cat <<'EOF'
+Hook line
+
+🍷 Feature one
+🥂 Feature two
+
+Which one would you pick?
+
+#tag #tag
+EOF
+)
+
+posteahora post "$CAPTION" --to instagram:a1b2
+```
+
+Rules that apply to every caption:
+
+- One empty line between blocks (hook, body, CTA, link, hashtags); a single line
+  break inside a list. Never 3+ breaks in a row.
+- **No Markdown** — `**bold**`, `- bullets`, `#headings` and `[text](url)` render
+  literally. Use emoji or numbers for bullets. (Discord renders Markdown.)
+- **Hashtags go in the caption**, as the last block. `--hashtags` does not publish.
+- **No URL in Instagram or TikTok captions** — use "link in bio". URLs are fine on
+  Facebook, LinkedIn, Threads, X, Bluesky and Discord.
+- Caption limits: X 280 · Bluesky 300 (graphemes) · Threads 500 · Discord 2000 ·
+  Instagram/TikTok video 2200 · LinkedIn 3000 · TikTok photos 4000 · YouTube 5000 ·
+  Facebook 63206. Per-platform caption overrides exist in the API/MCP
+  (`platformCaptions`) but the CLI has no flag for them — post separately per
+  channel when the text has to differ.
 
 ### Manage & analyze
 
@@ -147,7 +189,8 @@ skip it.
 
 - **Publishing is outward-facing and hard to undo.** Before running
   `posteahora post` WITHOUT `--draft`, confirm the caption, channels, and time
-  with the user. When unsure, create a `--draft` and ask.
+  with the user — showing the caption with its real line breaks, so they approve
+  the spacing that will actually publish. When unsure, create a `--draft` and ask.
 - Scheduled times must be in the future and ISO 8601.
 - Never invent media URLs, analytics numbers, or claims in captions.
 - Respect each platform's limits (e.g. X character count) — offer a per-platform
@@ -169,6 +212,9 @@ skip it.
 ## See also
 
 - [QUICK_START.md](QUICK_START.md) — the fastest path to a published post.
+- [../schedule-content/references/caption-format.md](../schedule-content/references/caption-format.md) — the caption contract in full.
+- [../schedule-content/references/media.md](../schedule-content/references/media.md) — generating, uploading and sizing visuals.
+- [../schedule-content/references/content-themes.md](../schedule-content/references/content-themes.md) — brand voice and content pillars.
 - [FEATURES.md](FEATURES.md) — full capability list.
 - [PLATFORMS.md](PLATFORMS.md) — per-platform support.
 - [PUBLISHING.md](PUBLISHING.md) — how publishing & scheduling work.

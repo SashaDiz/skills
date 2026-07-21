@@ -27,7 +27,9 @@ for metrics — it never publishes.
    on. Keep it concrete and tied to the numbers.
 4. **Optionally**, if the user wants to act on it, offer to add follow-up ideas to
    their board with `create_idea` (that's the `collect-post-ideas` flow) — ask
-   before creating anything.
+   before creating anything. Any caption you draft there follows the same
+   formatting contract as a real post: blocks separated by one empty line, real
+   line breaks, no Markdown, hashtags inside the caption text.
 
 ## Guardrails
 - Read-only: never call `create_post`, `schedule_post`, or `publish_post_now` here.

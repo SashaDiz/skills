@@ -19,6 +19,13 @@ their PosteAhora Ideas board. The board is the backlog — this skill only creat
 - **Language / tone** (default: match the user's message language).
 - Optional **tags** to attach (e.g. `eng`, `mulu`).
 
+If the account already has a theme file — voice, audience, content pillars — read
+it first and generate against the pillars instead of free-associating; tag each
+idea with its pillar id so the board doubles as a per-pillar backlog. See
+[../schedule-content/references/content-themes.md](../schedule-content/references/content-themes.md).
+No theme yet? Offer to build one — it's what stops the feed from sounding like a
+different person every post.
+
 ## Steps
 1. If niche is unclear, ask one short clarifying question. Otherwise proceed.
 2. Generate the requested number of distinct ideas. For each idea produce:
@@ -27,6 +34,23 @@ their PosteAhora Ideas board. The board is the backlog — this skill only creat
    - 2–4 **tags**.
    Vary angles: educational, story, contrarian, behind-the-scenes, social proof,
    question/poll, listicle, before/after.
+
+   **Write the caption already publish-ready.** An idea gets promoted into a real
+   post, and whatever text is in it ships byte for byte:
+
+   ```
+   Hook line
+
+   Body — one or two sentences, or emoji-led lines one per line
+
+   #hashtag #hashtag
+   ```
+
+   - One empty line between blocks; a single line break inside a list.
+   - Real line breaks, not the two characters `\n`.
+   - No Markdown — `**bold**`, `- bullets` and `[links](url)` render literally.
+   - Hashtags belong in the caption text, not in `tags` (tags are for filtering
+     the board; they never reach a platform).
 3. For **each** idea, call the `create_idea` tool with:
    `{ title, caption, tags, status: "unassigned" }`.
    Call it once per idea (do not batch into one call).

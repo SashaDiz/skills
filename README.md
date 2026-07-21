@@ -51,6 +51,31 @@ Just talk to your agent:
 - *"Schedule these 3 posts to Instagram and X for Tuesday morning"* → `schedule-content`
 - *"How did my posts do over the last month?"* → `analytics-report`
 
+## Platform-specific content, themes and visuals
+
+The skills don't just pass one caption to every network. `schedule-content`
+carries three references the agent reads before it writes:
+
+- **[caption-format.md](skills/schedule-content/references/caption-format.md)** —
+  the per-platform caption contract: block structure and blank lines that survive
+  publishing, real character limits for all nine networks (X 280, Bluesky 300
+  graphemes, Threads 500, LinkedIn 3000, Instagram 2200, TikTok 4000…), where
+  hashtags belong, which networks tolerate a URL, and `platformCaptions` so one
+  idea ships as a long LinkedIn post, a tight tweet and a hook-first TikTok
+  caption in a single call.
+- **[content-themes.md](skills/schedule-content/references/content-themes.md)** —
+  brand voice, audience, content pillars with weighted rotation, phrases to
+  avoid, CTA bank, and a visual style block. Define it once and every post sounds
+  like the same account; tag posts by pillar and analytics tells you which pillar
+  earns attention.
+- **[media.md](skills/schedule-content/references/media.md)** — your agent
+  generates the image (or renders a template, or takes a screenshot), then
+  `create_upload_url` → `PUT` → attach. Includes per-platform aspect ratios and
+  media counts, safe-area rules so TikTok's UI doesn't cover your headline, and
+  the format traps (TikTok photos must be JPEG, and so on).
+
+PosteAhora hosts and publishes the media — your AI creates it.
+
 ## Tools exposed by the MCP server
 
 `list_accounts`, `list_ideas`, `create_idea`, `update_idea`, `delete_idea`,

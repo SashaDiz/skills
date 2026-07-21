@@ -32,9 +32,14 @@ anything goes live (see Guardrails).
 - **Which channels** — map each to an `accountId` from `list_accounts`.
 - **When** — now, or a specific date/time. Assume the user's local timezone;
   scheduled times must be in the future (ISO 8601).
-- **Media** (optional) — only attach media the user actually provides. To upload a
-  file, use **`create_upload_url`** → have the user `PUT` the bytes → use the
-  returned `publicUrl` in `mediaUrls`. Never fabricate media URLs.
+- **Media** (optional) — the user's file, or one you generate for them. Either
+  way it goes through **`create_upload_url`** → `PUT` the bytes → use the
+  returned `publicUrl` in `mediaUrls`. Never fabricate media URLs. Aspect ratios,
+  per-platform limits and the generation workflow are in
+  [references/media.md](references/media.md).
+- **Theme** (optional) — if the account has a voice/pillars file, read it first so
+  the post sounds like the rest of the feed:
+  [references/content-themes.md](references/content-themes.md).
 - **Per-platform tweaks** (optional) — shorter text for X, TikTok draft mode, etc.
 
 ## Caption formatting (non-negotiable)
@@ -56,6 +61,11 @@ the short version:
   on Facebook, LinkedIn, Threads, X, Bluesky and Discord.
 - Put a short CTA near the top too: TikTok and Instagram truncate in-feed, so a
   CTA buried under the bullets is invisible to most viewers.
+
+One idea, three platforms: keep the substance, change the cut. Long-form with
+line-broken paragraphs on LinkedIn, one tight block under 280 on X, hook-first
+with the CTA in the opening line on TikTok. That's what "adapted per platform"
+means here — not the same paragraph pasted five times.
 
 ## Per-platform captions
 

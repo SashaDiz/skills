@@ -19,6 +19,13 @@ their PosteAhora Ideas board. The board is the backlog — this skill only creat
 - **Language / tone** (default: match the user's message language).
 - Optional **tags** to attach (e.g. `eng`, `mulu`).
 
+If the account already has a theme file — voice, audience, content pillars — read
+it first and generate against the pillars instead of free-associating; tag each
+idea with its pillar id so the board doubles as a per-pillar backlog. See
+[../schedule-content/references/content-themes.md](../schedule-content/references/content-themes.md).
+No theme yet? Offer to build one — it's what stops the feed from sounding like a
+different person every post.
+
 ## Steps
 1. If niche is unclear, ask one short clarifying question. Otherwise proceed.
 2. Generate the requested number of distinct ideas. For each idea produce:

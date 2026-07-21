@@ -212,6 +212,9 @@ skip it.
 ## See also
 
 - [QUICK_START.md](QUICK_START.md) — the fastest path to a published post.
+- [../schedule-content/references/caption-format.md](../schedule-content/references/caption-format.md) — the caption contract in full.
+- [../schedule-content/references/media.md](../schedule-content/references/media.md) — generating, uploading and sizing visuals.
+- [../schedule-content/references/content-themes.md](../schedule-content/references/content-themes.md) — brand voice and content pillars.
 - [FEATURES.md](FEATURES.md) — full capability list.
 - [PLATFORMS.md](PLATFORMS.md) — per-platform support.
 - [PUBLISHING.md](PUBLISHING.md) — how publishing & scheduling work.

@@ -386,7 +386,7 @@ Things to watch for and ask about:
 
 **You do NOT have to post anything you don't like.** The first few generations are purely for refining the prompt. Only start posting once the images consistently look good. The agent learns from each round — what works, what doesn't, what to emphasise in the prompt.
 
-Once the style is locked in, THEN use the hook strategy from competitor research and their category (see [references/slide-structure.md](references/slide-structure.md)) and start the posting schedule.
+Once the style is locked in, THEN use the hook strategy from competitor research and their category (see [slide-structure.md](slide-structure.md)) and start the posting schedule.
 
 ---
 

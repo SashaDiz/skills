@@ -120,10 +120,14 @@ the targeted platforms.
   already carries its own audio.
 - **TikTok media.** Pass `mediaType` explicitly (`"image"` or `"video"`) — it
   decides the photo vs video endpoint. Photos must be **JPEG**; PNG fails with
-  `file_format_check_failed`. TikTok also verifies URL ownership, so the media
-  must be hosted by PosteAhora: `create_upload_url` → `PUT` the bytes → use the
-  returned `publicUrl`. The presigned URL expires in 300 seconds, so upload
-  immediately after requesting it.
+  `file_format_check_failed`. Videos must be a standard **MP4 (H.264 / AAC) at a
+  constant 23–60 fps** — TikTok rejects odd/low or variable frame rates with
+  `frame_rate_check_failed` (AI-generated and slideshow clips are the usual
+  offenders; re-encode to 30 fps before uploading, retrying the same file won't
+  help). TikTok also verifies URL ownership, so the media must be hosted by
+  PosteAhora: `create_upload_url` → `PUT` the bytes → use the returned
+  `publicUrl`. The presigned URL expires in 300 seconds, so upload immediately
+  after requesting it.
 - **TikTok publishes asynchronously.** Right after its scheduled time the status
   stays `queued` for a few minutes. That is normal — don't report it as a failure
   or retry it; check again with `get_post_status`.

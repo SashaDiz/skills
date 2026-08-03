@@ -78,6 +78,14 @@ reels/stories/TikTok), **1920×1080** (16:9 for YouTube).
 
 - **TikTok photos must be JPEG.** A PNG fails with `file_format_check_failed`.
   Convert before uploading.
+- **TikTok videos must be a standard MP4 at 23–60 fps.** TikTok processes the
+  video asynchronously and rejects anything outside that frame-rate range (and
+  variable-frame-rate clips) with `frame_rate_check_failed`; wrong codecs/formats
+  fail with `file_format_check_failed`. AI-generated or slideshow clips are the
+  usual offenders — they often render at odd or low fps. Safe recipe: **MP4,
+  H.264 / AAC, constant 30 fps, 1080×1920 (9:16)**. Retrying the same file just
+  fails again — re-encode the source first (e.g. `ffmpeg -i in.mp4 -r 30
+  -c:v libx264 -pix_fmt yuv420p -c:a aac out.mp4`).
 - **TikTok verifies URL ownership** — its media has to be served from
   `cdn.posteahora.com`, i.e. it must go through `create_upload_url`. Your own
   CDN will be rejected.

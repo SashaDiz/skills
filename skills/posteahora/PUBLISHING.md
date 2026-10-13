@@ -104,8 +104,8 @@ viewers.
 - **Hashtags go inside the caption**, as the last block. The `--hashtags` flag
   stores them on the post but they never reach the platform.
 - **No URL in Instagram or TikTok captions** — Instagram won't linkify it and
-  TikTok penalizes links in captions. Use "link in bio". URLs are fine on
-  Facebook, LinkedIn, Threads, X, Bluesky and Discord.
+  TikTok penalizes links in captions. Use "link in bio". URLs are fine on every
+  other network.
 - No leading or trailing whitespace on a line — indentation ships.
 
 ### Limits
@@ -115,13 +115,18 @@ viewers.
 | X (Twitter) | 280 | 25000 with premium; line breaks cost characters |
 | Bluesky | 300 | counted in **graphemes**, not UTF-16 units |
 | Threads | 500 | the tightest real-world limit |
+| Mastodon | 500 | default; your connected instance's own limit wins |
+| Pinterest | 800 | the Pin description; the title is separate (≤100) |
+| Google Business | 1500 | the Local Post summary |
 | Discord | 2000 | Markdown supported here |
 | Instagram | 2200 | |
 | TikTok (video) | 2200 | |
 | LinkedIn | 3000 | "see more" collapses after ~3 lines |
+| Telegram | 4096 | 1024 when the post has media (it becomes a caption) |
 | TikTok (photos) | 4000 | also needs `photoTitle` ≤90 in `platformOptions` |
 | YouTube | 5000 | only ~2 lines show under the video |
 | Facebook | 63206 | |
+| WordPress / Dev.to / Tumblr | — | the caption is the article body; title is a separate field |
 
 Per-platform caption overrides (`platformCaptions`) exist in the REST API and the
 MCP server, but the CLI has no flag for them — when the text must differ per

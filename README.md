@@ -2,8 +2,8 @@
 
 Agent **skills** + **MCP connector** that let Claude (and other agents) plan
 content, collect post ideas, schedule and publish across your connected social
-networks — Instagram, X/Twitter, LinkedIn, Threads, Facebook, TikTok and more —
-straight from a chat, powered by [PosteAhora](https://posteahora.com).
+networks — Instagram, X/Twitter, LinkedIn, Threads, Facebook, TikTok, Google
+Business and more — straight from a chat, powered by [PosteAhora](https://posteahora.com).
 
 ## Install
 

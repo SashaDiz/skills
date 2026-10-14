@@ -1,6 +1,6 @@
 ---
 name: posteahora
-description: "Social media scheduling & publishing CLI — plan, schedule and publish posts across Instagram, TikTok, YouTube, X (Twitter), Facebook, LinkedIn, Threads, Bluesky and Discord, powered by PosteAhora."
+description: "Social media scheduling & publishing CLI — plan, schedule and publish posts across 16 networks: Instagram, TikTok, YouTube, X (Twitter), Facebook, LinkedIn, Threads, Bluesky, Mastodon, Discord, Telegram, WordPress, Dev.to, Tumblr, Pinterest and Google Business, powered by PosteAhora."
 allowed-tools:
   - Bash(posteahora:*)
 ---
@@ -41,7 +41,7 @@ The installed command is `posteahora`. It can also run via `npx @posteahora/cli`
 | Property | Value |
 |----------|-------|
 | **name** | posteahora |
-| **description** | Social media scheduling CLI for publishing across Instagram, TikTok, YouTube, X, Facebook, LinkedIn, Threads, Bluesky and Discord |
+| **description** | Social media scheduling CLI for publishing across 16 networks: Instagram, TikTok, YouTube, X, Facebook, LinkedIn, Threads, Bluesky, Mastodon, Discord, Telegram, WordPress, Dev.to, Tumblr, Pinterest and Google Business |
 | **command** | `posteahora` |
 | **allowed-tools** | Bash(posteahora:*) |
 
@@ -160,10 +160,13 @@ Rules that apply to every caption:
   literally. Use emoji or numbers for bullets. (Discord renders Markdown.)
 - **Hashtags go in the caption**, as the last block. `--hashtags` does not publish.
 - **No URL in Instagram or TikTok captions** — use "link in bio". URLs are fine on
-  Facebook, LinkedIn, Threads, X, Bluesky and Discord.
-- Caption limits: X 280 · Bluesky 300 (graphemes) · Threads 500 · Discord 2000 ·
-  Instagram/TikTok video 2200 · LinkedIn 3000 · TikTok photos 4000 · YouTube 5000 ·
-  Facebook 63206. Per-platform caption overrides exist in the API/MCP
+  every other network.
+- Caption limits: X 280 · Bluesky 300 (graphemes) · Threads 500 · Mastodon 500
+  (your instance may differ) · Pinterest 800 (description) · Google Business 1500 ·
+  Discord 2000 · Instagram/TikTok video 2200 · LinkedIn 3000 · Telegram 4096 (1024
+  with media) · TikTok photos 4000 · YouTube 5000 · Facebook 63206. Blog platforms
+  (WordPress, Dev.to, Tumblr) take the caption as the article body, with the title
+  as a separate field. Per-platform caption overrides exist in the API/MCP
   (`platformCaptions`) but the CLI has no flag for them — post separately per
   channel when the text has to differ.
 

@@ -11,10 +11,17 @@ account ID (`posteahora accounts`).
 | **YouTube** | ✅ | ✅ | ✅ | Video uploads (Shorts and standard) |
 | **X (Twitter)** | ✅ | ✅ | ✅ | Text, images, video; shorter per-platform captions supported |
 | **Facebook** | ✅ | ✅ | ✅ | Page posts, images, video, reels |
-| **LinkedIn** | ✅ | ✅ | ✅ | Text, single/multi-image, video |
+| **LinkedIn** | ✅ | ✅ | — | Text, single/multi-image, video (personal profiles) |
 | **Threads** | ✅ | ✅ | ✅ | Text and media posts |
-| **Bluesky** | ✅ | ✅ | ✅ | Text and images |
+| **Bluesky** | ✅ | ✅ | ✅ | Text and images (no video yet) |
+| **Mastodon** | ✅ | ✅ | ✅ | Text and media; your instance's own character limit applies |
 | **Discord** | ✅ | ✅ | — | Channel messages via webhook |
+| **Telegram** | ✅ | ✅ | — | Channel or group via a bot (make the bot an admin first) |
+| **WordPress** | ✅ | ✅ | — | Blog posts; the title is a separate required field |
+| **Dev.to** | ✅ | ✅ | — | Markdown articles; title + up to 4 tags |
+| **Tumblr** | ✅ | ✅ | — | Posts with a title, body and images (no video yet) |
+| **Pinterest** | ✅ | ✅ | ✅ | Image, carousel or video Pins; **a board is required → `platformOptions`, API/MCP only** |
+| **Google Business** | ✅ | ✅ | — | Local Posts per location; events, offers and a CTA button need **`platformOptions` → API/MCP only**; no per-post analytics |
 
 ## Targeting platforms
 

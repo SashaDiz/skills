@@ -67,6 +67,8 @@ These are the constraints PosteAhora enforces (`PLATFORM_CONFIG`).
 | Threads | post | up to 20 images/videos |
 | Bluesky | post | up to 4 images (no video) |
 | Discord | message | up to 10 images/videos |
+| Pinterest | pin | 1 image, 2–5 images (carousel), **or** 1 video — a board is required |
+| Google Business | local post | 1 image, no video — JPG/PNG, ≥250px short edge, ≤5 MB |
 
 Accepted formats: JPEG, PNG, WebP, GIF, MP4, MOV, WebM, M4V. Upload cap 500 MB.
 

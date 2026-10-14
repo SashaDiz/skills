@@ -1,7 +1,8 @@
 # Summary
 
 **PosteAhora CLI** — schedule and publish social media posts across Instagram,
-TikTok, YouTube, X (Twitter), Facebook, LinkedIn, Threads, Bluesky, and Discord,
+TikTok, YouTube, X (Twitter), Facebook, LinkedIn, Threads, Bluesky, Mastodon,
+Discord, Telegram, WordPress, Dev.to, Tumblr, Pinterest and Google Business,
 from the command line. A thin, zero-dependency wrapper over the
 [PosteAhora](https://posteahora.com) public REST API, built for developers, CI,
 and AI agents.

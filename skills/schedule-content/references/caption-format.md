@@ -53,8 +53,8 @@ on it alone.
    disappear.
 6. **No URL in Instagram or TikTok captions.** Instagram doesn't linkify caption
    URLs, and TikTok penalizes (and has banned) posts with links in the caption.
-   Write "link in bio" / "link in profile" instead. URLs are fine on Facebook,
-   LinkedIn, Threads, X, Bluesky and Discord.
+   Write "link in bio" / "link in profile" instead. URLs are fine on every other
+   network.
 
 ## Per-platform limits and behavior
 
@@ -71,6 +71,9 @@ Limits below are the ones PosteAhora enforces (`PLATFORM_CONFIG`).
 | Facebook | 63206 | Long captions fine; a full URL is allowed and expands into a preview. |
 | YouTube | 5000 | Description field; only the first ~2 lines show under the video. |
 | Discord | 2000 | The one platform where Markdown works. |
+| Mastodon | 500 (default) | Your connected instance's own limit wins — it's read when you connect. |
+| Pinterest | 800 | The Pin description; the title is a separate field (≤100). |
+| Google Business | 1500 | The Local Post summary. One photo, no video; events/offers and a CTA button are API/MCP-only. |
 
 ## Per-platform captions
 

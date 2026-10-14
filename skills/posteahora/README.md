@@ -2,7 +2,8 @@
 
 **Social media scheduling & publishing CLI for AI agents and developers** — plan,
 schedule, and publish posts across Instagram, TikTok, YouTube, X (Twitter),
-Facebook, LinkedIn, Threads, Bluesky, and Discord, programmatically.
+Facebook, LinkedIn, Threads, Bluesky, Mastodon, Discord, Telegram, WordPress,
+Dev.to, Tumblr, Pinterest and Google Business, programmatically.
 
 The PosteAhora CLI is a thin, zero-dependency command-line interface to the
 [PosteAhora](https://posteahora.com) public REST API. It lets developers, scripts,
@@ -230,10 +231,17 @@ See [SUPPORTED_FILE_TYPES.md](SUPPORTED_FILE_TYPES.md) for accepted formats.
 | YouTube | ✅ | ✅ | ✅ |
 | X (Twitter) | ✅ | ✅ | ✅ |
 | Facebook | ✅ | ✅ | ✅ |
-| LinkedIn | ✅ | ✅ | ✅ |
+| LinkedIn | ✅ | ✅ | — |
 | Threads | ✅ | ✅ | ✅ |
 | Bluesky | ✅ | ✅ | ✅ |
+| Mastodon | ✅ | ✅ | ✅ |
 | Discord | ✅ | ✅ | — |
+| Telegram | ✅ | ✅ | — |
+| WordPress | ✅ | ✅ | — |
+| Dev.to | ✅ | ✅ | — |
+| Tumblr | ✅ | ✅ | — |
+| Pinterest | ✅ | ✅ | ✅ |
+| Google Business | ✅ | ✅ | — |
 
 Connect accounts in the PosteAhora app; the CLI targets them by ID.
 
